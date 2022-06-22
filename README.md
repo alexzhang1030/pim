@@ -5,7 +5,7 @@ help you quickly modify `package.json`, `README`, `LICENSE` when you use a publi
 ## Installation
 
 ```bash
-pnpm i -g pim
+pnpm i -g @alexzzz/pim
 # in your project root
 pim
 ```
