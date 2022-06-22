@@ -5,15 +5,15 @@
   "packageManager": "pnpm@7.1.2",
   "description": "",
   "keywords": [],
-  "homepage": "https://github.com/alexzhang1030/mip#readme",
+  "homepage": "https://github.com/alexzhang1030/pim#readme",
   "bugs": {
-    "url": "https://github.com/alexzhang1030/mip/issues"
+    "url": "https://github.com/alexzhang1030/pim/issues"
   },
   "license": "MIT",
   "author": "alexzhang1030",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexzhang1030/mip.git"
+    "url": "git+https://github.com/alexzhang1030/pim.git"
   },
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
