@@ -1,4 +1,4 @@
-# p(ackage)i(nfo)m(odifier) 
+# P(ackage)I(nfo)M(odifier) 
 
 help you quickly modify `package.json`, `README`, `LICENSE` when you use a public `starter-template`
 
