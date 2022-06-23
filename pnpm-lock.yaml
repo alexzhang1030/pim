@@ -9,7 +9,7 @@ specifiers:
   '@types/node': 17.0.45
   '@types/object-path': 0.11.1
   bumpp: 8.2.1
-  changelogithub: ^0.7.0
+  changelogithub: 0.7.0
   eslint: 8.18.0
   fast-license: 1.0.0
   husky: 8.0.1
