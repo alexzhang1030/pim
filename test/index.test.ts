@@ -1,4 +1,4 @@
-describe('developer-plus', () => {
+describe('pim', () => {
   it('happy path', () => {
     expect(1).toBe(1)
   })
