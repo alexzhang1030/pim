@@ -18,44 +18,55 @@ const questions = [
     name: 'repo_name',
     message: 'What is this project name?',
   },
+  {
+    type: 'list',
+    name: 'license_type',
+    message: 'which license you want to use?',
+    choices: [
+      'mit',
+      'gpl-3.0',
+      'apache-2.0',
+    ],
+  },
 ]
 
 const root = process.cwd()
 const withRoot = (path: string) => resolve(root, path)
 const ghPath = 'https://github.com/'
 
-// notice that $$s is replaced with the owner_name
-// $$r is replaced with the repo name
-const needsUpdatePkgField = [
+const needsUpdatePkgField = (owner_name: string, repo_name: string, license_name: string) => ([
   {
     name: 'name',
-    value: '[$$r]',
+    value: repo_name,
   },
   {
     name: 'homepage',
-    value: `${ghPath}[$$s]/[$$r]#readme`,
+    value: `${ghPath}${owner_name}/${repo_name}#readme`,
   },
   {
     name: 'bugs.url',
-    value: `${ghPath}[$$s]/[$$r]/issues`,
+    value: `${ghPath}${owner_name}/${repo_name}/issues`,
   },
   {
     name: 'author',
-    value: '[$$s]',
+    value: owner_name,
   },
   {
     name: 'repository.url',
-    value: `git+${ghPath}[$$s]/[$$r].git`,
+    value: `git+${ghPath}${owner_name}/${repo_name}.git`,
   },
-]
+  {
+    name: 'license',
+    value: license_name,
+  },
+])
 
-async function genPkg(owner_name: string, repo_name: string) {
+async function genPkg(owner_name: string, repo_name: string, license_name: string) {
   logger.info('开始转换 package.json')
   const pkg = readFileSync(withRoot('package.json'), 'utf8')
   const final = { ...JSON.parse(pkg) }
-  needsUpdatePkgField.forEach(({ name, value }) => {
-    const final_value = value.replace('[$$s]', owner_name).replace('[$$r]', repo_name)
-    op.set(final, name, final_value)
+  needsUpdatePkgField(owner_name, repo_name, license_name).forEach(({ name, value }) => {
+    op.set(final, name, value)
   })
   writeFileSync(withRoot('package.json'), JSON.stringify(final, null, 2))
   logger.info('转换 package.json 完成')
@@ -67,17 +78,18 @@ function genREADME(owner_name: string, repo_name: string) {
   logger.info('转换 README.md 完成')
 }
 
-function genLICENSE(owner_name: string) {
+function genLICENSE(content: string) {
   logger.info('开始转换 LICENSE')
-  writeFileSync(withRoot('LICENSE'), license(owner_name))
+  writeFileSync(withRoot('LICENSE'), content)
   logger.info('转换 LICENSE 完成')
 }
 
 async function main() {
-  const { owner_name, repo_name } = await inquire.prompt(questions)
-  await genPkg(owner_name, repo_name)
+  const { owner_name, repo_name, license_type } = await inquire.prompt(questions)
+  const { name: license_name, content } = license(license_type, owner_name)
+  await genPkg(owner_name, repo_name, license_name)
   genREADME(owner_name, repo_name)
-  genLICENSE(owner_name)
+  genLICENSE(content)
   logger.end('全部工作已经完成')
   process.exit(0)
 }

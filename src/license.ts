@@ -1,24 +1,28 @@
-export function license(username: string) {
+import mit from '../data/license/mit'
+import apache from '../data/license/apache'
+import gpl from '../data/license/gpl'
+
+export type VALID_LICENSE = 'mit' | 'gpl-3.0' | 'apache-2.0'
+
+const licenseHelper = (year: number, owner: string, licenseFn: (year: number, owner: string) => string) => licenseFn(year, owner)
+
+const licenses: (year: number, owner: string) => Record<VALID_LICENSE, { name: string; content: string }> =
+  (year: number, owner: string) => ({
+    "mit": {
+      name: "MIT",
+      content: licenseHelper(year, owner, mit),
+    },
+    'gpl-3.0': {
+      name: "GPL-3.0",
+      content: licenseHelper(year, owner, gpl),
+    },
+    "apache-2.0": {
+      name: "Apache-2.0",
+      content: licenseHelper(year, owner, apache)
+    }
+  })
+
+export function license(license_type: VALID_LICENSE, username: string) {
   const year = new Date().getFullYear()
-  return `The MIT License (MIT)
-
-Copyright ${year} ${username}
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.`
+  return licenses(year, username)[license_type]
 }
