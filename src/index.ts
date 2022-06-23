@@ -17,6 +17,8 @@ const questions = [
     type: 'input',
     name: 'repo_name',
     message: 'What is this project name?',
+    validate: (repo_name: string) =>
+      isValidPackageName(repo_name) || 'Invalid package.json name',
   },
   {
     type: 'list',
@@ -95,3 +97,14 @@ async function main() {
 }
 
 main()
+
+/**
+ * copied from `create-vite`
+ * @param projectName 项目名称
+ * @returns {boolean}
+ */
+function isValidPackageName(projectName: string) {
+  return /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(
+    projectName,
+  )
+}
