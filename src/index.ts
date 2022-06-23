@@ -4,6 +4,7 @@ import inquire from 'inquirer'
 import { NL } from '@alexzzz/nl'
 import op from 'object-path'
 import { license } from './license'
+import { getRemoteURL, remote_choices, remote_data_list } from './remote'
 
 const logger = new NL()
 
@@ -22,6 +23,18 @@ const questions = [
   },
   {
     type: 'list',
+    name: 'remote_type',
+    message: 'Which remote git website you want to use?',
+    choices: remote_choices,
+  },
+  {
+    type: 'input',
+    name: 'remote_type_custom',
+    message: 'type your remote git website (no http(s)://)',
+    when: (answers: any) => answers.remote_type === 'custom...',
+  },
+  {
+    type: 'list',
     name: 'license_type',
     message: 'which license you want to use?',
     choices: [
@@ -34,40 +47,42 @@ const questions = [
 
 const root = process.cwd()
 const withRoot = (path: string) => resolve(root, path)
-const ghPath = 'https://github.com/'
 
-const needsUpdatePkgField = (owner_name: string, repo_name: string, license_name: string) => ([
-  {
-    name: 'name',
-    value: repo_name,
-  },
-  {
-    name: 'homepage',
-    value: `${ghPath}${owner_name}/${repo_name}#readme`,
-  },
-  {
-    name: 'bugs.url',
-    value: `${ghPath}${owner_name}/${repo_name}/issues`,
-  },
-  {
-    name: 'author',
-    value: owner_name,
-  },
-  {
-    name: 'repository.url',
-    value: `git+${ghPath}${owner_name}/${repo_name}.git`,
-  },
-  {
-    name: 'license',
-    value: license_name,
-  },
-])
+const needsUpdatePkgField = (owner_name: string, repo_name: string, license_name: string, base_remote_url: string) => {
+  const base_url = getRemoteURL(base_remote_url)
+  return [
+    {
+      name: 'name',
+      value: repo_name,
+    },
+    {
+      name: 'homepage',
+      value: `${base_url}${owner_name}/${repo_name}#readme`,
+    },
+    {
+      name: 'bugs.url',
+      value: `${base_url}${owner_name}/${repo_name}/issues`,
+    },
+    {
+      name: 'author',
+      value: owner_name,
+    },
+    {
+      name: 'repository.url',
+      value: `git+${base_url}${owner_name}/${repo_name}.git`,
+    },
+    {
+      name: 'license',
+      value: license_name,
+    },
+  ]
+}
 
-async function genPkg(owner_name: string, repo_name: string, license_name: string) {
+async function genPkg(owner_name: string, repo_name: string, license_name: string, base_remote_url: string) {
   logger.info('开始转换 package.json')
   const pkg = readFileSync(withRoot('package.json'), 'utf8')
   const final = { ...JSON.parse(pkg) }
-  needsUpdatePkgField(owner_name, repo_name, license_name).forEach(({ name, value }) => {
+  needsUpdatePkgField(owner_name, repo_name, license_name, base_remote_url).forEach(({ name, value }) => {
     op.set(final, name, value)
   })
   writeFileSync(withRoot('package.json'), JSON.stringify(final, null, 2))
@@ -87,11 +102,25 @@ function genLICENSE(content: string) {
 }
 
 async function main() {
-  const { owner_name, repo_name, license_type } = await inquire.prompt(questions)
+  const { owner_name, repo_name, license_type, remote_type, remote_type_custom } = await inquire.prompt(questions)
+  // get custom license data
   const { name: license_name, content } = license(license_type, owner_name)
-  await genPkg(owner_name, repo_name, license_name)
+  // get remote data
+  const find_remote = remote_data_list.find(({ name }) => name === remote_type)
+  const remote_url = find_remote
+    ? find_remote.domain
+    : remote_type_custom
+
+  // generate package.json
+  await genPkg(owner_name, repo_name, license_name, remote_url)
+
+  // generate readme.md
   genREADME(owner_name, repo_name)
+
+  // generate license
   genLICENSE(content)
+
+  // all done
   logger.end('全部工作已经完成')
   process.exit(0)
 }
@@ -100,8 +129,6 @@ main()
 
 /**
  * copied from `create-vite`
- * @param projectName 项目名称
- * @returns {boolean}
  */
 function isValidPackageName(projectName: string) {
   return /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(
