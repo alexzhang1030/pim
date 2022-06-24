@@ -17,7 +17,7 @@ specifiers:
   lint-staged: 13.0.2
   object-path: ^0.11.8
   pnpm: 7.3.0
-  tsx: 3.5.0
+  tsx: 3.6.0
   typescript: 4.7.4
   unbuild: 0.7.4
   unplugin-auto-import: 0.9.0
@@ -42,7 +42,7 @@ devDependencies:
   husky: 8.0.1
   lint-staged: 13.0.2
   pnpm: 7.3.0
-  tsx: 3.5.0
+  tsx: 3.6.0
   typescript: 4.7.4
   unbuild: 0.7.4
   unplugin-auto-import: 0.9.0
@@ -503,8 +503,8 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
-  /@esbuild-kit/cjs-loader/2.2.0:
-    resolution: {integrity: sha512-MWRzs8ds9sujFL++H9Z4aGak61J1Gjlj9VyIjXx9AlgtCS8EEjdjrWKPMNBXP1hvJMmKbL7PE4zT+OzaBv1CaA==}
+  /@esbuild-kit/cjs-loader/2.2.1:
+    resolution: {integrity: sha512-pq2Z4DcqTBF7y1wQuIzFVqmHJVnmP6hgHEWN2ubPjeG7OzXMZ9NvozW+YA/MIeMdZWp1jcJ/EvXk2+mfEKoCDQ==}
     dependencies:
       '@esbuild-kit/core-utils': 2.0.1
       get-tsconfig: 4.0.5
@@ -517,8 +517,8 @@ packages:
       source-map-support: 0.5.21
     dev: true
 
-  /@esbuild-kit/esm-loader/2.3.0:
-    resolution: {integrity: sha512-iaAHKgQlnXNBloPxhxR05d9nR7zF5T0z+p1umAeB/nejY9+cIN3ULMQ/O/QTW6RVtwDGxzdXdgOYCb3FjeI4PA==}
+  /@esbuild-kit/esm-loader/2.3.1:
+    resolution: {integrity: sha512-CC0H91Oa02cczLswEoiLowTzWxvnS3tIBGkQa1BnieFK7HHV4whrBFGRlUD9rMHfyyoO55IuOqNujycXX+gI8A==}
     dependencies:
       '@esbuild-kit/core-utils': 2.0.1
       get-tsconfig: 4.0.5
@@ -4782,13 +4782,13 @@ packages:
       typescript: 4.7.4
     dev: true
 
-  /tsx/3.5.0:
-    resolution: {integrity: sha512-hLqNvjXt4EjliUKCY2mJA+tTJ3WRdPpqYdU6Q76Maa4VJONj4hBa9dPtcyRJEPFJiNxoJ0gqMak9ki0zXioJDw==}
+  /tsx/3.6.0:
+    resolution: {integrity: sha512-XzqSxPmyJnI7ZtEX/CLE/CSDkqbL7dK4jwtJRIZpV0EhCxWqtb1OqJPlUc4CVS3/MFdpt8ZxLpvPFohWRTHbzw==}
     hasBin: true
     dependencies:
-      '@esbuild-kit/cjs-loader': 2.2.0
+      '@esbuild-kit/cjs-loader': 2.2.1
       '@esbuild-kit/core-utils': 2.0.1
-      '@esbuild-kit/esm-loader': 2.3.0
+      '@esbuild-kit/esm-loader': 2.3.1
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
