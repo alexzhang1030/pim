@@ -20,7 +20,7 @@ specifiers:
   tsx: 3.6.0
   typescript: 4.7.4
   unbuild: 0.7.4
-  unplugin-auto-import: 0.9.1
+  unplugin-auto-import: 0.9.2
   vitest: 0.16.0
 
 dependencies:
@@ -45,7 +45,7 @@ devDependencies:
   tsx: 3.6.0
   typescript: 4.7.4
   unbuild: 0.7.4
-  unplugin-auto-import: 0.9.1
+  unplugin-auto-import: 0.9.2
   vitest: 0.16.0
 
 packages:
@@ -4943,8 +4943,8 @@ packages:
     engines: {node: '>= 10.0.0'}
     dev: true
 
-  /unplugin-auto-import/0.9.1:
-    resolution: {integrity: sha512-U2LGVl7nlVIGGV86Gr4x9JS5R2Vag43CGDiOebcCqQ1FPV/r8pdQ9yIZVbBj/v6xk3px/vE1zePC9z/WZgKmXg==}
+  /unplugin-auto-import/0.9.2:
+    resolution: {integrity: sha512-cihfSyWtDyOvpD+bKQ77XSJF2Ix3N3ueatd59slBKgl995fbfExf2qXk/KialZE4/pPNjdGNEJl5ZwAhYj+e1g==}
     engines: {node: '>=14'}
     peerDependencies:
       '@vueuse/core': '*'
