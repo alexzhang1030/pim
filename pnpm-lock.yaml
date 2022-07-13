@@ -9,7 +9,7 @@ specifiers:
   '@types/node': 17.0.45
   '@types/object-path': 0.11.1
   bumpp: 8.2.1
-  changelogithub: 0.7.0
+  changelogithub: 0.12.4
   eslint: 8.18.0
   fast-license: 1.0.0
   husky: 8.0.1
@@ -36,7 +36,7 @@ devDependencies:
   '@types/node': 17.0.45
   '@types/object-path': 0.11.1
   bumpp: 8.2.1
-  changelogithub: 0.7.0
+  changelogithub: 0.12.4
   eslint: 8.18.0
   fast-license: 1.0.0
   husky: 8.0.1
@@ -1202,15 +1202,15 @@ packages:
       semver: 7.3.7
     dev: true
 
-  /c12/0.2.7:
-    resolution: {integrity: sha512-ih1nuHbZ6Ltf8Wss96JH6YvKIW5+9+uLAA08LUQAoDrFPGSyvPvQv/QBIRE+dCBWOK4PcwH0ylRkSa9huI1Acw==}
+  /c12/0.2.8:
+    resolution: {integrity: sha512-JomSyVwGnqndRdVVW6SGnHUeHIfJFQNe/4zPFK6zLKPQm8US+hNr4kZP7xeNnzjn3jnQUsBbPdT85fm8K5Pr4A==}
     dependencies:
       defu: 6.0.0
       dotenv: 16.0.1
       gittar: 0.1.1
       jiti: 1.14.0
-      mlly: 0.5.3
-      pathe: 0.2.0
+      mlly: 0.5.4
+      pathe: 0.3.2
       rc9: 1.2.2
     dev: true
 
@@ -1302,20 +1302,20 @@ packages:
     resolution: {integrity: sha512-LBbyAPmqpJ3sm/soYWZ+z8FDACaGB9eY8O2villawSxRDv83kve25Kje54FkiN6YrPiQaW2ehz9owKY+YzHTWw==}
     hasBin: true
     dependencies:
-      c12: 0.2.7
+      c12: 0.2.8
       consola: 2.15.3
       execa: 6.1.0
       mri: 1.2.0
       scule: 0.2.1
     dev: true
 
-  /changelogithub/0.7.0:
-    resolution: {integrity: sha512-5vuFpOPGS+05hzMw+uWGxhwNWJiknXXwbs+vEs/J1p2Y5Q4ZPvlfH4fyZQ2qnsh7nXXFcdyc3C/+QN5REeOL4A==}
+  /changelogithub/0.12.4:
+    resolution: {integrity: sha512-b7284jaQQw7Nxn5Q5UbTSBd5VJLJOlFmyYafAxtgp6fcnKcmK9xm+Li2gDQ49PTTnr4SKwX7Ei4gAnCRfr8GDg==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
       '@antfu/utils': 0.5.2
-      c12: 0.2.7
+      c12: 0.2.8
       cac: 6.7.12
       changelogen: 0.1.1
       execa: 6.1.0
@@ -3698,6 +3698,13 @@ packages:
       pkg-types: 0.3.3
     dev: true
 
+  /mlly/0.5.4:
+    resolution: {integrity: sha512-gFlsLWCjVwu/LM/ZfYUkmnbBoz7eyBIMUwVQYDqhd8IvtNFDeZ95uwAyxHE2Xx7tQwePQaCo4fECZ9MWFEUTgQ==}
+    dependencies:
+      pathe: 0.3.2
+      pkg-types: 0.3.3
+    dev: true
+
   /mri/1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -4056,6 +4063,10 @@ packages:
     resolution: {integrity: sha512-3vUjp552BJzCw9vqKsO5sttHkbYqqsZtH0x1PNtItgqx8BXEXzoY1SYRKcL6BTyVh4lGJGLj0tM42elUDMvcYA==}
     dev: true
 
+  /pathe/0.3.2:
+    resolution: {integrity: sha512-qhnmX0TOqlCvdWWTkoM83wh5J8fZ2yhbDEc9MlsnAEtEc+JCwxUKEwmd6pkY9hRe6JR1Uecbc14VcAKX2yFSTA==}
+    dev: true
+
   /pathval/1.1.1:
     resolution: {integrity: sha512-Dp6zGqpTdETdR63lehJYPeIOqpiNBNtc7BpWSLrOje7UaIsE5aY92r/AunQA7rsXvet3lrJ3JnZX29UPTKXyKQ==}
     dev: true
@@ -4078,8 +4089,8 @@ packages:
     resolution: {integrity: sha512-6AJcCMnjUQPQv/Wk960w0TOmjhdjbeaQJoSKWRQv9N3rgkessCu6J0Ydsog/nw1MbpnxHuPzYbfOn2KmlZO1FA==}
     dependencies:
       jsonc-parser: 3.0.0
-      mlly: 0.5.3
-      pathe: 0.3.0
+      mlly: 0.5.4
+      pathe: 0.3.2
     dev: true
 
   /pluralize/8.0.0:
