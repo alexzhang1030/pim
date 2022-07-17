@@ -64,7 +64,7 @@
     "@types/object-path": "0.11.1",
     "bumpp": "8.2.1",
     "changelogithub": "0.12.4",
-    "eslint": "8.19.0",
+    "eslint": "8.20.0",
     "fast-license": "1.0.0",
     "husky": "8.0.1",
     "lint-staged": "13.0.3",
