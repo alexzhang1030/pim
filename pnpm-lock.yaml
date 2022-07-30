@@ -16,7 +16,7 @@ specifiers:
   inquirer: ^9.0.0
   lint-staged: 13.0.3
   object-path: ^0.11.8
-  pnpm: 7.6.0
+  pnpm: 7.7.1
   tsx: 3.8.0
   typescript: 4.7.4
   unbuild: 0.7.6
@@ -41,7 +41,7 @@ devDependencies:
   fast-license: 1.0.0
   husky: 8.0.1
   lint-staged: 13.0.3
-  pnpm: 7.6.0
+  pnpm: 7.7.1
   tsx: 3.8.0
   typescript: 4.7.4
   unbuild: 0.7.6
@@ -4138,8 +4138,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /pnpm/7.6.0:
-    resolution: {integrity: sha512-pCFZ4OSM3M7JUHShnmk4Hlt9A8QDxLx+i+9kkK4g60YuYhhhD3oqBfWrHax0/XMDvr7GwK0fqFjA8iD8HlZ8Kw==}
+  /pnpm/7.7.1:
+    resolution: {integrity: sha512-c+ND1UJsA15ZnTW0sUU71YiEB+Xda9crNlLnpNkyQN/LVa7Z8IgH38lVt2zmmG2lpMgBDeOHti4r7mfiwwrKLA==}
     engines: {node: '>=14.6'}
     hasBin: true
     dev: true
